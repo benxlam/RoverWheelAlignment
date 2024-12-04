@@ -19,21 +19,21 @@ def plotRoverState(ax, x,y, psi, phiL,phiR, w, r_ratio):
     # Plot the rover center of mass and the body as a line
     ax.plot(x,y, 'ko')
 
-    ax.quiver(x, y, np.cos(psi), np.sin(psi), scale=10)  # heading direction
+    ax.quiver(x, y, np.cos(psi), np.sin(psi), scale=20)  # heading direction
 
     # Plot the wheels as a circle, denoting the angle 
-    wheelPos1 = (x-dx, y-dy)
-    wheelPos2 = (x+dx, y+dy)
+    wheelPosL = (x+dx, y+dy)
+    wheelPosR = (x-dx, y-dy)
 
-    circle1 = Circle(wheelPos1, r, edgecolor='b', facecolor='none')
-    circle2 = Circle(wheelPos2, r, edgecolor='r', facecolor='none')
+    circle1 = Circle(wheelPosL, r, edgecolor='b', facecolor='none')
+    circle2 = Circle(wheelPosR, r, edgecolor='r', facecolor='none')
     ax.add_patch(circle1)
     ax.add_patch(circle2)
 
     #Show the angle markers 
-    ax.plot([wheelPos1[0], wheelPos1[0]+r*np.cos(phiL)], 
-             [wheelPos1[1], wheelPos1[1]+r*np.sin(phiL)], 
-             'r-')
-    ax.plot([wheelPos2[0], wheelPos2[0]+r*np.cos(phiR)], 
-             [wheelPos2[1], wheelPos2[1]+r*np.sin(phiR)], 
+    ax.plot([wheelPosL[0], wheelPosL[0]+r*np.cos(phiL)], 
+             [wheelPosL[1], wheelPosL[1]+r*np.sin(phiL)], 
              'b-')
+    ax.plot([wheelPosR[0], wheelPosR[0]+r*np.cos(phiR)], 
+             [wheelPosR[1], wheelPosR[1]+r*np.sin(phiR)], 
+             'r-')
